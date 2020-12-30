@@ -45,7 +45,8 @@ export default class Loginscreen extends React.Component {
     checkuser = async (email, pass) => {
         firebase.auth().signInWithEmailAndPassword(email, pass)
             .then(() => {
-                this.props.navigation.navigate('BottomTab')
+                this.props.navigation.navigate('AppDrawer');
+                //Alert.alert("successfully logged in!!");
             })
             .catch((error) => {
                 var errorCode = error.code;

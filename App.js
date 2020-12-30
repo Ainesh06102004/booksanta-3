@@ -3,16 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Loginscreen from './screens/loginscreen';
 import Bookdonate from './screens/bookdonate';
-import Bookrequest from './screens/bookrequest';
-import { BottomTab } from './components/AppTabNavigator';
-
+import { AppDrawer } from './components/AppDrawer';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
         <Appcontainer />
-      </View>
     );
   }
 
@@ -20,17 +16,9 @@ export default class App extends React.Component {
 
 const Switch = createSwitchNavigator({
   Loginscreen: {screen: Loginscreen},
-  BottomTab: {screen: BottomTab}
+  //Bookdonate: {screen: Bookdonate}
+  AppDrawer: {screen: AppDrawer}
 })
 
 const Appcontainer = createAppContainer(Switch);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 

@@ -1,10 +1,23 @@
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Bookdonate from '../screens/bookdonate';
 import Bookrequest from '../screens/bookrequest';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-export const BottomTab = createBottomTabNavigator({
-    Bookrequest: { screen: Bookrequest, navigationOptions: { tabBarLabel: "Request Books" } },
-    Bookdonate: { screen: Bookdonate, navigationOptions: { tabBarLabel: "Donate Books" } }
-})
+
+
+export const AppTabNavigator = createBottomTabNavigator({
+    DonateBooks: {
+        screen: Bookdonate,
+        navigationOptions: {
+
+            tabBarLabel: "Donate Books",
+        }
+    },
+    BookRequest: {
+        screen: Bookrequest,
+        navigationOptions: {
+
+            tabBarLabel: "Book Request",
+        }
+    }
+});
