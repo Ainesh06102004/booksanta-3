@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert, Modal, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert, Modal, ScrollView, KeyboardAvoidingView, FlatList } from 'react-native';
 import db from '../config';
 import firebase from 'firebase';
-import { Header } from 'react-native-elements';
+import { Header, ListItem } from 'react-native-elements';
+
 
 
 
@@ -17,23 +18,56 @@ export default class Bookdonate extends React.Component {
     getbooklist = () => {
         var list = [];
         db.collection('Requests').onSnapshot((snapshot) => {
-            snapshot.docs.map((doc) => {
-                var data = doc.data();
-                list.push(data);
+            var requestedBooksList = snapshot.docs.map((doc) => doc.data())
+            this.setState({
+                booklist: requestedBooksList
             });
         });
-        console.log(list);
-        this.setState({ booklist: list })
+
     }
 
     componentDidMount() {
         this.getbooklist();
     }
+    keyExtractor = (item, index) => index.toString()
 
+    renderItem = ({ item, i }) => {
+        return (
+            <ListItem
+                style={{ marginTop: 10 }}
+                key={i} bottomDivider >
+                <ListItem.Content>
+                    <ListItem.Title>{item.bookname}</ListItem.Title>
+                    <ListItem.Subtitle>{item.reason}</ListItem.Subtitle>
+                </ListItem.Content>
+
+            </ListItem>
+
+        );
+    }
     render() {
-        return (!this.state.booklist 
-            ? <Text>No donations to be made!!</Text>
-             : (<View style={{ marginTop: 250, flex: 1 }}><Text>Hello</Text>
-        </View>))
+        return (
+            <View style={{ flex: 1 }}>
+                {
+                    this.state.booklist.length === 0
+                        ? (<View><Text>No donations to be made!!</Text></View>)
+                        : (
+                            <View>
+                                <FlatList
+                                    keyExtractor={this.keyExtractor}
+                                    data={this.state.booklist}
+                                    renderItem={this.renderItem} />
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        //this.props.navigation.navigate("Detailscreen");
+                                    }}
+                                >
+                                    <Text>More</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                }
+            </View>
+        )
     }
 }

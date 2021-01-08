@@ -4,6 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Loginscreen from './screens/loginscreen';
 import Bookdonate from './screens/bookdonate';
 import { AppDrawer } from './components/AppDrawer';
+import { AppStackNavigator } from './components/appstacknavigator';
 
 export default class App extends React.Component {
   render() {
@@ -17,7 +18,8 @@ export default class App extends React.Component {
 const Switch = createSwitchNavigator({
   Loginscreen: {screen: Loginscreen},
   //Bookdonate: {screen: Bookdonate}
-  AppDrawer: {screen: AppDrawer}
+  AppDrawer: {screen: AppDrawer},
+  Appstack: {screen: AppStackNavigator}
 })
 
 const Appcontainer = createAppContainer(Switch);
