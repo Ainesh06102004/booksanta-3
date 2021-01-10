@@ -40,7 +40,15 @@ export default class Bookdonate extends React.Component {
                     <ListItem.Title>{item.bookname}</ListItem.Title>
                     <ListItem.Subtitle>{item.reason}</ListItem.Subtitle>
                 </ListItem.Content>
-
+                <View>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.navigation.navigate("Detailscreen", {"details": item});
+                        }}
+                    >
+                        <Text>More</Text>
+                    </TouchableOpacity>
+                </View>
             </ListItem>
 
         );
@@ -57,13 +65,6 @@ export default class Bookdonate extends React.Component {
                                     keyExtractor={this.keyExtractor}
                                     data={this.state.booklist}
                                     renderItem={this.renderItem} />
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        //this.props.navigation.navigate("Detailscreen");
-                                    }}
-                                >
-                                    <Text>More</Text>
-                                </TouchableOpacity>
                             </View>
                         )
                 }

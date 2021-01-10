@@ -183,7 +183,7 @@ export default class Loginscreen extends React.Component {
                             borderColor: 'black',
                             borderWidth: 2,
                             alignSelf: 'center',
-                            marginTop: 40,
+                            marginTop: 280,
                             borderRadius: 15,
                             textAlign: 'center',
                         }}
