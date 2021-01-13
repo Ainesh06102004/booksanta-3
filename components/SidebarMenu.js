@@ -4,10 +4,10 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert, Modal, Scro
 export default class Sidebarmenu extends React.Component {
     render() {
         return (<View style={{
-            flex: 0.2,
+            flex: 1,
             justifyContent: 'flex-end',
             paddingBottom: 30
-        }}> <TouchableOpacity><Text>Log-Out</Text></TouchableOpacity></View >);
+        }}><TouchableOpacity><Text>Log Out</Text></TouchableOpacity></View >);
     }
 
 }

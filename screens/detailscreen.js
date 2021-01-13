@@ -22,7 +22,6 @@ export default class Detailscreen extends React.Component {
     getdetails(){
         db.collection('Users').where("email", "==", this.state.recieverid).get().
             then((snapshot) => {
-                this.state.num =1;
                 snapshot.forEach((doc) => {
                     this.setState({
                         recievercontact: doc.data().contact,
@@ -33,13 +32,13 @@ export default class Detailscreen extends React.Component {
     }
     getusername(){
         db.collection('Users').where('email', '==', this.state.recieverid).get().
-            then((doc) => {
-                this.state.num = 2;
+        then((snapshot) => {
+            snapshot.forEach((doc) => {
                 this.setState({
-                    recievername: doc.data().firstName + " " + doc.data().lastname,
-
+                    recievername: doc.data().firstName + " " + doc.data().lastname
                 })
             });
+        });
     }
     componentDidMount() {
         this.getdetails();
@@ -70,12 +69,7 @@ export default class Detailscreen extends React.Component {
                         title={"Reciever Information"}
                         titleStyle={{ fontSize: 20 }}
                     >
-                        <Card>
-                            <Text style={{ fontWeight: 'bold' }}>Name: {this.state.num}</Text>
-                        </Card>
-                        <Card>
-                            <Text style={{ fontWeight: 'bold' }}>Name: {this.state.recieverid}</Text>
-                        </Card>
+        
                         <Card>
                             <Text style={{ fontWeight: 'bold' }}>Name: {this.state.recievername}</Text>
                         </Card>

@@ -28,6 +28,7 @@ export default class Loginscreen extends React.Component {
                     email: this.state.email,
                     address: this.state.address,
                     contact: this.state.contact,
+                    
                 })
                 return (
                     Alert.alert('User registered successfully', '', [
